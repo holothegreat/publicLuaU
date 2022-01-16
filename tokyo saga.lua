@@ -1,4 +1,5 @@
 getgenv().autoCash=false
+getgenv().removeSafe=false
 
 local Plr = game:GetService("Players").LocalPlayer
 local vu = game:GetService("VirtualUser")
@@ -22,6 +23,16 @@ function autoCash()
     end)
 end
 
+function removeSafe()
+    spawn(function()
+        while wait() do
+            if not getgenv().removeSafe then break end
+                repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("SafeZone")
+                game:GetService("Players").LocalPlayer.Character:FindFirstChild("SafeZone"):Destroy()
+        end
+    end)
+end
+
 local c = game:GetService("Workspace").Vender:GetChildren()
 for i = 1, #c do
     duplicate = i - 1
@@ -35,6 +46,14 @@ for i = 1, #c do
         end)
     end
 end
+
+
+tab4.addToggle("No Zone", "zonetoggle", "Removes safe zone.", false, function(bool)
+    getgenv().removeSafe = bool
+    if bool then
+        removeSafe()
+    end
+end)
 
 tab4.addToggle("Cash Farm", "cashtoggle", "OP cash farm.", false, function(bool)
     getgenv().autoCash = bool
