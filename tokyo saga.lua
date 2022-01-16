@@ -22,6 +22,20 @@ function autoCash()
     end)
 end
 
+local c = game:GetService("Workspace").Vender:GetChildren()
+for i = 1, #c do
+    duplicate = i - 1
+    if c[i]:IsA("Model") or c[i]:IsA("Part") and tostring(c[i]) ~= tostring(c[duplicate]) then
+    tab3.addButton(tostring(c[i]), "", function() 
+        for _, ClickDetector in pairs(c[i]:GetDescendants()) do
+            if (ClickDetector:IsA("ClickDetector")) then
+                fireclickdetector(ClickDetector)
+            end
+            end
+        end)
+    end
+end
+
 tab4.addToggle("Cash Farm", "cashtoggle", "OP cash farm.", false, function(bool)
     getgenv().autoCash = bool
     if bool then
