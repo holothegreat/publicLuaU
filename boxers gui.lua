@@ -13,10 +13,11 @@ local tab3 = menu.addTab("Shop", 3, false, 6762188594)
 local tab4 = menu.addTab("Misc", 4, false, 6319138981)
 
 function autoTread()
+    local check = game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.TrainingBar
     spawn(function()
         while wait() do
-            if not getgenv().autoTread then break end
-                local bar = game:GetService("Players").Iymu.PlayerGui.TrainingTreadmill.TrainingBar.Bar.AbsolutePosition.X
+            if not getgenv().autoTread and check then break end
+                local bar = game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.TrainingBar.Bar.AbsolutePosition.X
                 wait(0.2)
                 if bar >= 618 and bar <= 646 then
                     game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.LS.RemoteEvent:FireServer("PushUp")
