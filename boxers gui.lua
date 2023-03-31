@@ -18,8 +18,7 @@ function autoTread()
         while wait() do
             if not getgenv().autoTread and check then break end
                 local bar = game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.TrainingBar.Bar.AbsolutePosition.X
-                wait(0.2)
-                if bar >= 618 and bar <= 646 then
+                if bar >= 615 and bar <= 650 then
                     game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.LS.RemoteEvent:FireServer("PushUp")
                 else
                     game:GetService("Players").LocalPlayer.PlayerGui.TrainingTreadmill.LS.RemoteEvent:FireServer("PushUpStart")
@@ -35,3 +34,4 @@ tab1.addToggle("Auto Treadmill", "treadtoggle", "Hop on treadmill then toggle.",
     end
 end)
 
+-- game:GetService("Players").Iymu.PlayerGui.GymCard
